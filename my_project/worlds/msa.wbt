@@ -1,0 +1,153 @@
+#VRML_SIM R2023b utf8
+
+EXTERNPROTO "https://raw.githubusercontent.com/cyberbotics/webots/R2023b/projects/objects/backgrounds/protos/TexturedBackground.proto"
+EXTERNPROTO "https://raw.githubusercontent.com/cyberbotics/webots/R2023b/projects/objects/backgrounds/protos/TexturedBackgroundLight.proto"
+EXTERNPROTO "https://raw.githubusercontent.com/cyberbotics/webots/R2023b/projects/objects/floors/protos/RectangleArena.proto"
+EXTERNPROTO "https://raw.githubusercontent.com/cyberbotics/webots/R2023b/projects/robots/universal_robots/protos/UR5e.proto"
+EXTERNPROTO "https://raw.githubusercontent.com/cyberbotics/webots/R2023b/projects/appearances/protos/BrushedAluminium.proto"
+EXTERNPROTO "https://raw.githubusercontent.com/cyberbotics/webots/R2023b/projects/appearances/protos/Parquetry.proto"
+EXTERNPROTO "https://raw.githubusercontent.com/cyberbotics/webots/R2023b/projects/objects/tables/protos/Table.proto"
+EXTERNPROTO "https://raw.githubusercontent.com/cyberbotics/webots/R2023b/projects/devices/robotiq/protos/Robotiq2f140Gripper.proto"
+EXTERNPROTO "https://raw.githubusercontent.com/cyberbotics/webots/R2023b/projects/humans/pedestrian/protos/Pedestrian.proto"
+
+WorldInfo {
+}
+Viewpoint {
+  orientation -0.034767554180511646 0.0003215289745091062 0.9993953741114794 3.1231897713976084
+  position 16.4595335460917 0.5017336777797965 3.1555242297831687
+}
+TexturedBackground {
+  texture "factory"
+}
+TexturedBackgroundLight {
+}
+RectangleArena {
+  contactMaterial "wood"
+  floorSize 9 9
+  floorTileSize 1 1
+  floorAppearance Parquetry {
+    type "light strip"
+  }
+  wallThickness 0.06
+  wallHeight 0.4
+  wallAppearance BrushedAluminium {
+    colorOverride 0 0 0
+    IBLStrength 2
+  }
+}
+Pedestrian {
+  hidden translation_2 -0.045450119272623386 1.6653345369377348e-16 0.0030687585138407802
+  hidden rotation_2 0 1 0 0.23999999999993696
+  hidden translation_3 -0.031714669318631775 0 0.008139458402318389
+  hidden rotation_3 0 -0.9999999999999999 0 0.33399999999996843
+  hidden translation_4 -0.05048820501367782 5.551115123125783e-17 0.0013288508929170662
+  hidden rotation_4 0 -1 0 0.1360000000000317
+  hidden translation_5 0.04195514402041083 5.551115123125783e-17 0.006968136626929328
+  hidden rotation_5 0 -1 0 0.22399999999993192
+  hidden translation_6 -0.01181580133159392 -1.6653345369377348e-16 0.004369756518811718
+  hidden rotation_6 0 -1 0 0.12800000000002976
+  hidden translation_7 0.008869068028373742 0 -0.0009464742475396304
+  hidden rotation_7 0 1 0 0.023999999999971322
+  hidden translation_8 -0.004804915093358543 -5.551115123125783e-17 0.0006015735128718225
+  hidden rotation_8 0 -1 0 0.01599999999988014
+  hidden translation_9 0.1266578750931388 -5.551115123125783e-17 -0.01571624351239309
+  hidden rotation_9 0 1 0 0.16799999999984716
+  hidden translation_11 -0.22495216909920573 -1.6653345369377348e-16 -0.06043227440763527
+  hidden rotation_11 0 -1 0 0.7900000000000547
+  hidden translation_12 0.73053095353992 -5.551115123125783e-17 -0.7696264587289184
+  hidden rotation_12 0 0.9999999999999999 0 1.5440000000000331
+  hidden translation_13 0.0812581091715274 0 -0.009287826659982068
+  hidden rotation_13 0 1 0 0.06999999999999902
+  hidden translation_14 -0.03982409971670145 0 0.0032336450989263743
+  hidden rotation_14 0 1 0 0.10799999999998448
+  translation 0.49999999999999994 -3.2399999999999123 1.298000000000011
+  rotation 0 1 0 0
+  controller "Joystick"
+  controllerArgs [
+    ""
+  ]
+  rightLegAngle -0.7900000000000545
+  rightLowerLegAngle 1.544000000000033
+  rightFootAngle 0.07
+  leftLegAngle -0.015999999999876335
+  leftLowerLegAngle 0.1679999999998472
+  rightArmAngle -0.2239999999999327
+  rightLowerArmAngle -0.12800000000002912
+  rightHandAngle 0.02399999999997817
+  leftArmAngle 0.23999999999993635
+  leftLowerArmAngle -0.33399999999996904
+  leftHandAngle -0.13600000000003093
+  headAngle 0.10799999999998364
+}
+UR5e {
+  hidden position_0_0 -1.8321889212397955
+  hidden rotation_1 0 0 -0.9999999999999999 1.8321889212397955
+  hidden position_1_0 -0.19853812859856734
+  hidden linearVelocity_1 0.00011482691752480109 -0.003080492829564928 0.0012320348492520612
+  hidden angularVelocity_1 -0.0014131759779386108 0.000651632066062793 -0.021090758408576993
+  hidden rotation_2 0 1 0 1.3722578714014293
+  hidden position_2_0 1.056187011217067
+  hidden linearVelocity_2 -0.02174521192521245 -0.0760092336718265 -0.3045066745647424
+  hidden angularVelocity_2 1.4290764226065829 -0.368289060078282 -0.020445940305001797
+  hidden rotation_3 0 1 0 1.0561870112170668
+  hidden position_3_0 1.3198631308149693
+  hidden linearVelocity_3 -0.04691431823305592 -0.14429340230150015 -0.5892578857781101
+  hidden angularVelocity_3 -0.13025042781251495 0.05741217461822501 -0.02297568245148851
+  hidden rotation_4 0 0.9999999999999999 0 2.8906591308149663
+  hidden position_4_0 0.2704768452346231
+  hidden linearVelocity_4 -0.059259165503558364 -0.1529667801836227 -0.5545238078179487
+  hidden angularVelocity_4 2.516707157535316 -0.6371332752718232 -0.012453628725394683
+  hidden rotation_5 0 0 1 0.27047684523462334
+  hidden position_5_0 -0.6608064924423204
+  hidden linearVelocity_5 -0.09758405713961671 -0.30476258251859817 -0.33171005413110255
+  hidden angularVelocity_5 2.324553128525114 -1.4154094998805946 -0.5374861448133679
+  hidden translation_6 -2.548526250774285e-05 0.0001560627812434713 0.09987201007763208
+  hidden rotation_6 0.00010736890173826065 -0.9999999920391954 -6.628369567811333e-05 0.6608064955675662
+  hidden linearVelocity_6 -0.06816110588123803 -0.3080624721611266 -0.18390984296965734
+  hidden angularVelocity_6 1.5853021253816395 -1.3580753345976433 -0.3710179209991107
+  hidden position_7_0 -0.01737628128232127
+  hidden position_7_1 0.017698686074771954
+  hidden position_7_2 -0.010020336871306724
+  hidden position_7_3 0.28087454964515607
+  hidden rotation_8 0.9999999999999999 0 0 2.3131722812823208
+  hidden linearVelocity_8 -0.04197256636420421 -0.3480894945219965 -0.15264416631772965
+  hidden angularVelocity_8 1.5324548871375319 -1.4444242159163254 -0.4098982846979228
+  hidden position_9_0 0.04595502407692653
+  hidden rotation_10 -1 0 0 0.6790449759230672
+  hidden linearVelocity_10 -0.008319461767821501 -0.3974925222307349 0.0012294900988195634
+  hidden angularVelocity_10 1.5596127489980258 -1.3741454148444145 -0.3929643511756358
+  hidden rotation_12 1 0 0 2.3134946860747716
+  hidden position_12_0 0.04563232921522786
+  hidden linearVelocity_12 -0.035381811237021776 -0.35323637552043363 -0.086128752946725
+  hidden angularVelocity_12 1.5327791899825036 -1.4445539647105106 -0.4083411435977756
+  hidden rotation_13 8.677831117008301e-10 0.913948043520339 0.405831213369973 3.1415929999956522
+  hidden linearVelocity_13 -0.02377253554066605 -0.31250265294308377 0.020776441428844328
+  hidden angularVelocity_13 1.5850337149179436 -1.357952956433548 -0.37134881182125923
+  hidden position_14_0 -1.4572827994357032
+  hidden translation_15 0 0.08173512871490875 -0.02820226539815994
+  hidden rotation_15 -0.9999999999999999 0 0 2.1822827994357006
+  hidden linearVelocity_15 -0.008126242387331617 -0.3298758073386542 0.0631265196090918
+  hidden angularVelocity_15 1.682724097690442 -1.3310426804679754 -0.006876378061147714
+  hidden rotation_17 2.424457447806983e-08 -0.9603724128765765 -0.2787199823938392 3.1415929965895506
+  hidden position_17_0 -1.7281457091101322
+  hidden linearVelocity_17 -0.02196911439199878 -0.3125113199176196 0.013911383893347173
+  hidden angularVelocity_17 1.5618916839307784 -1.364190444396934 -0.45829222777889056
+  translation 1.22397e-07 3.34758e-13 0.76
+  rotation -2.5500495119243123e-07 0.6561058744223104 0.7546688555575023 6.21834e-06
+  controller "ur5e_controller"
+  controllerArgs [
+    ""
+  ]
+  toolSlot [
+    Robotiq2f140Gripper {
+    }
+    Camera {
+    }
+    InertialUnit {
+    }
+  ]
+}
+Table {
+  translation 0.11 4.0401e-07 0
+  rotation 0 0 1 1.5708
+}
