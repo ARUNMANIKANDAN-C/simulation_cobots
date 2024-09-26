@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Hand Joystick Control</title>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/nipplejs/0.7.3/nipplejs.min.js"></script>
+</head>
+<body>
+    <h2>Left Joystick</h2>
+    <div id="leftJoystickZone" style="width: 200px; height: 200px;"></div>
+    <h2>Right Joystick</h2>
+    <div id="rightJoystickZone" style="width: 200px; height: 200px;"></div>
+
+    <script>
+        // Initialize joysticks
+        var leftJoystick = nipplejs.create({
+            zone: document.getElementById('leftJoystickZone'),
+            mode: 'static',
+            position: { left: '50px', top: '50px' },
+            color: 'red'
+        });
+
+        var rightJoystick = nipplejs.create({
+            zone: document.getElementById('rightJoystickZone'),
+            mode: 'static',
+            position: { right: '50px', top: '50px' },
+            color: 'blue'
+        });
+
+        // Function to send joystick data to Flask app
+        function sendJoystickData(leftData, rightData) {
+            const data = {
+                'leftArmAngle': leftData.vector.x,
+                'leftLowerArmAngle': leftData.vector.y,
+                'rightArmAngle': rightData.vector.x,
+                'rightLowerArmAngle': rightData.vector.y
+            };
+
+            fetch('/update_angles', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify(data),
+            });
+        }
+
+        // Capture joystick movements and send to Flask app
+        leftJoystick.on('move', function(evt, data) {
+            sendJoystickData(data, { vector: { x: 0, y: 0 } });
+        });
+
+        rightJoystick.on('move', function(evt, data) {
+            sendJoystickData({ vector: { x: 0, y: 0 } }, data);
+        });
+    </script>
+</body>
+</html>

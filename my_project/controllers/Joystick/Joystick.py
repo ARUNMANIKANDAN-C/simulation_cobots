@@ -150,6 +150,16 @@ class Pedestrian (Supervisor):
         X,Y=temp.split(' ')
         X=float(X)
         Y=float(Y)
+        """
+        if X<1 and X >0:
+            X=1
+        if X>-1 and X <0:
+           X=-1
+        if Y<1 and Y >0:
+            Y=1
+        if Y>-1 and Y <0:
+            Y=-1
+        """
         return X,Y
         
     # Keyboard values.
@@ -164,7 +174,7 @@ class Pedestrian (Supervisor):
                 self.Start_up()
                 self.angle=0
 
-            elif key==314:
+            elif key==316:
                 X,Y=self.Convert()
                 self.point_list[-2]=self.point_list[-1]
                 change=str(X-0.2)+' '+ str(Y)
@@ -172,7 +182,7 @@ class Pedestrian (Supervisor):
                 self.Start_up()
                 self.angle=0
                 
-            elif key==316:
+            elif key==314:
                 X,Y=self.Convert()
                 self.point_list[-2]=self.point_list[-1]
                 change=str(X+0.2)+' '+ str(Y)
