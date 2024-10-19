@@ -1,5 +1,4 @@
 from controller import Supervisor
-from flask import Flask, jsonify, request, render_template
 import threading
 
 class Pedestrian(Supervisor):
@@ -28,7 +27,8 @@ class Pedestrian(Supervisor):
         }
         
         # Start the Flask server in a separate thread
-        threading.Thread(target=self.start_flask_server, daemon=True).start()
+        from flask_server import start_flask_server
+        threading.Thread(target=start_flask_server, args=(self,), daemon=True).start()
 
     def apply_hand_angles(self):
         """Apply the current hand angles to the pedestrian."""
@@ -39,27 +39,3 @@ class Pedestrian(Supervisor):
         self.angles[3][0] = self.hand_angles['rightArmAngle']  
         self.angles[4][0] = self.hand_angles['rightLowerArmAngle']  
         self.angles[5][0] = self.hand_angles['rightHandAngle']  
-
-    def start_flask_server(self):
-        """Start the Flask app to control hand angles via joystick."""
-        app = Flask(__name__, template_folder='./templates')
-
-        @app.route('/')
-        def index():
-            return render_template('joystick.html')  # Serve HTML for the joystick
-
-        @app.route('/update_angles', methods=['POST'])
-        def update_angles():
-            data = request.get_json()
-            for key in self.hand_angles:
-                if key in data:
-                    self.hand_angles[key] = data[key]
-            self.apply_hand_angles()
-            return jsonify(self.hand_angles)
-
-        @app.route('/get_angles', methods=['GET'])
-        def get_angles():
-            return jsonify(self.hand_angles)
-
-        app.run(host='0.0.0.0', port=5000)
-

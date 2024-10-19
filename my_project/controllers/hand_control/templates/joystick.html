@@ -6,34 +6,72 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/nipplejs/0.7.3/nipplejs.min.js"></script>
 </head>
 <body>
-    <h2>Left Joystick</h2>
-    <div id="leftJoystickZone" style="width: 200px; height: 200px;"></div>
-    <h2>Right Joystick</h2>
-    <div id="rightJoystickZone" style="width: 200px; height: 200px;"></div>
+    <h2>Left Arm Joystick</h2>
+    <div id="leftArmJoystickZone" style="width: 200px; height: 200px;"></div>
+    <h2>Left Lower Arm Joystick</h2>
+    <div id="leftLowerArmJoystickZone" style="width: 200px; height: 200px;"></div>
+    <h2>Left Hand Joystick</h2>
+    <div id="leftHandJoystickZone" style="width: 200px; height: 200px;"></div>
+    <h2>Right Arm Joystick</h2>
+    <div id="rightArmJoystickZone" style="width: 200px; height: 200px;"></div>
+    <h2>Right Lower Arm Joystick</h2>
+    <div id="rightLowerArmJoystickZone" style="width: 200px; height: 200px;"></div>
+    <h2>Right Hand Joystick</h2>
+    <div id="rightHandJoystickZone" style="width: 200px; height: 200px;"></div>
 
     <script>
         // Initialize joysticks
-        var leftJoystick = nipplejs.create({
-            zone: document.getElementById('leftJoystickZone'),
+        var leftArmJoystick = nipplejs.create({
+            zone: document.getElementById('leftArmJoystickZone'),
             mode: 'static',
-            position: { left: '50px', top: '50px' },
+            position: { left: '25px', top: '25px' },
             color: 'red'
         });
 
-        var rightJoystick = nipplejs.create({
-            zone: document.getElementById('rightJoystickZone'),
+        var leftLowerArmJoystick = nipplejs.create({
+            zone: document.getElementById('leftLowerArmJoystickZone'),
             mode: 'static',
-            position: { right: '50px', top: '50px' },
+            position: { left: '25px', top: '25px' },
             color: 'blue'
         });
 
+        var leftHandJoystick = nipplejs.create({
+            zone: document.getElementById('leftHandJoystickZone'),
+            mode: 'static',
+            position: { left: '25px', top: '25px' },
+            color: 'green'
+        });
+
+        var rightArmJoystick = nipplejs.create({
+            zone: document.getElementById('rightArmJoystickZone'),
+            mode: 'static',
+            position: { right: '25px', top: '25px' },
+            color: 'yellow'
+        });
+
+        var rightLowerArmJoystick = nipplejs.create({
+            zone: document.getElementById('rightLowerArmJoystickZone'),
+            mode: 'static',
+            position: { right: '25px', top: '25px' },
+            color: 'orange'
+        });
+
+        var rightHandJoystick = nipplejs.create({
+            zone: document.getElementById('rightHandJoystickZone'),
+            mode: 'static',
+            position: { right: '25px', top: '25px' },
+            color: 'purple'
+        });
+
         // Function to send joystick data to Flask app
-        function sendJoystickData(leftData, rightData) {
+        function sendJoystickData(leftArmData, leftLowerArmData, leftHandData, rightArmData, rightLowerArmData, rightHandData) {
             const data = {
-                'leftArmAngle': leftData.vector.x,
-                'leftLowerArmAngle': leftData.vector.y,
-                'rightArmAngle': rightData.vector.x,
-                'rightLowerArmAngle': rightData.vector.y
+                'leftArmAngle': leftArmData.vector.x,
+                'leftLowerArmAngle': leftLowerArmData.vector.x,
+                'leftHandAngle': leftHandData.vector.x,
+                'rightArmAngle': rightArmData.vector.x,
+                'rightLowerArmAngle': rightLowerArmData.vector.x,
+                'rightHandAngle': rightHandData.vector.x
             };
 
             fetch('/update_angles', {
@@ -46,12 +84,28 @@
         }
 
         // Capture joystick movements and send to Flask app
-        leftJoystick.on('move', function(evt, data) {
-            sendJoystickData(data, { vector: { x: 0, y: 0 } });
+        leftArmJoystick.on('move', function(evt, data) {
+            sendJoystickData(data, { vector: { x: 0, y: 0 } }, { vector: { x: 0, y: 0 } }, { vector: { x: 0, y: 0 } }, { vector: { x: 0, y: 0 } }, { vector: { x: 0, y: 0 } });
         });
 
-        rightJoystick.on('move', function(evt, data) {
-            sendJoystickData({ vector: { x: 0, y: 0 } }, data);
+        leftLowerArmJoystick.on('move', function(evt, data) {
+            sendJoystickData({ vector: { x: 0, y: 0 } }, data, { vector: { x: 0, y: 0 } }, { vector: { x: 0, y: 0 } }, { vector: { x: 0, y: 0 } }, { vector: { x: 0, y: 0 } });
+        });
+
+        leftHandJoystick.on('move', function(evt, data) {
+            sendJoystickData({ vector: { x: 0, y: 0 } }, { vector: { x: 0, y: 0 } }, data, { vector: { x: 0, y: 0 } }, { vector: { x: 0, y: 0 } }, { vector: { x: 0, y: 0 } });
+        });
+
+        rightArmJoystick.on('move', function(evt, data) {
+            sendJoystickData({ vector: { x: 0, y: 0 } }, { vector: { x: 0, y: 0 } }, { vector: { x: 0, y: 0 } }, data, { vector: { x: 0, y: 0 } }, { vector: { x: 0, y: 0 } });
+        });
+
+        rightLowerArmJoystick.on('move', function(evt, data) {
+            sendJoystickData({ vector: { x: 0, y: 0 } }, { vector: { x: 0, y: 0 } }, { vector: { x: 0, y: 0 } }, { vector: { x: 0, y: 0 } }, data, { vector: { x: 0, y: 0 } });
+        });
+
+        rightHandJoystick.on('move', function(evt, data) {
+            sendJoystickData({ vector: { x: 0, y: 0 } }, { vector: { x: 0, y: 0 } }, { vector: { x: 0, y: 0 } }, { vector: { x: 0, y: 0 } }, { vector: { x: 0, y: 0 } }, data);
         });
     </script>
 </body>
