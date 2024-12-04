@@ -1,0 +1,107 @@
+
+ |  __init__(self, node, name: Optional[str] = None, index: Optional[int] = None, proto: bool = False)
+ |      Initialize self.  See help(type(self)) for accurate signature.
+ |  
+ |  disableSFTracking(self)
+ |  
+ |  enableSFTracking(self, samplingPeriod: int)
+ |  
+ |  getCount(self) -> int
+ |  
+ |  getMFBool(self, index: int) -> bool
+ |  
+ |  getMFColor(self, index: int) -> List[float]
+ |  
+ |  getMFFloat(self, index: int) -> float
+ |  
+ |  getMFInt32(self, index: int) -> int
+ |  
+ |  getMFNode(self, index: int) -> controller.node.Node
+ |  
+ |  getMFRotation(self, index: int) -> List[float]
+ |  
+ |  getMFString(self, index: int) -> str
+ |  
+ |  getMFVec2f(self, index: int) -> List[float]
+ |  
+ |  getMFVec3f(self, index: int) -> List[float]
+ |  
+ |  getName(self) -> str
+ |  
+ |  getSFBool(self) -> bool
+ |  
+ |  getSFColor(self) -> List[float]
+ |  
+ |  getSFFloat(self) -> float
+ |  
+ |  getSFInt32(self) -> int
+ |  
+ |  getSFNode(self) -> controller.node.Node
+ |  
+ |  getSFRotation(self) -> List[float]
+ |  
+ |  getSFString(self) -> str
+ |  
+ |  getSFVec2f(self) -> List[float]
+ |  
+ |  getSFVec3f(self) -> List[float]
+ |  
+ |  getType(self) -> int
+ |  
+ |  getTypeName(self) -> str
+ |  
+ |  importMFNodeFromString(self, position: int, nodeString: str)
+ |  
+ |  importSFNodeFromString(self, nodeString: str)
+ |  
+ |  insertMFBool(self, index, value: bool)
+ |  
+ |  insertMFColor(self, index, value: List[float])
+ |  
+ |  insertMFFloat(self, index, value: float)
+ |  
+ |  insertMFInt32(self, index, value: int)
+ |  
+ |  insertMFRotation(self, index, value: List[float])
+ |  
+ |  insertMFString(self, index, value)
+ |  
+ |  insertMFVec2f(self, index, value: List[float])
+ |  
+ |  insertMFVec3f(self, index, value: List[float])
+ |  
+ |  removeMF(self, index)
+ |  
+ |  removeSF(self)
+ |  
+ |  setMFBool(self, index, value: bool)
+ |  
+ |  setMFColor(self, index, value: List[float])
+ |  
+ |  setMFFloat(self, index, value: float)
+ |  
+ |  setMFInt32(self, index, value: int)
+ |  
+ |  setMFRotation(self, index, value: List[float])
+ |  
+ |  setMFString(self, index, value: str)
+ |  
+ |  setMFVec2f(self, index, value: List[float])
+ |  
+ |  setMFVec3f(self, index, value: List[float])
+ |  
+ |  setSFBool(self, value: bool)
+ |  
+ |  setSFColor(self, value: List[float])
+ |  
+ |  setSFFloat(self, value: float)
+ |  
+ |  setSFInt32(self, value: int)
+ |  
+ |  setSFRotation(self, value: List[float])
+ |  
+ |  setSFString(self, value: str)
+ |  
+ |  setSFVec2f(self, value: List[float])
+ |  
+ |  setSFVec3f(self, value: List[float])

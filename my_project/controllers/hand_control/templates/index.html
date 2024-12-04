@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Joystick Control</title>
+    <script src="https://cdn.socket.io/4.0.0/socket.io.min.js"></script>
+    <style>
+        body {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            background-color: #f0f0f0;
+        }
+        .joystick {
+            position: relative;
+            width: 200px;
+            height: 200px;
+            background: #ccc;
+            border-radius: 50%;
+            overflow: hidden;
+        }
+        .stick {
+            position: absolute;
+            top: 47%; /* Center vertically */
+            left: 47%; /* Center horizontally */
+            width: 40px; /* Reduced size for edge contact */
+            height: 40px;
+            background: red;
+            border-radius: 50%;
+            cursor: pointer;
+            transform: translate(-47%, -47%); /* Center the stick initially */
+            transition: transform 0.1s;
+        }
+        .center-dot {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            width: 10px;
+            height: 10px;
+            background: red;
+            border-radius: 50%;
+            transform: translate(-50%, -50%); /* Center the dot */
+            z-index: 1; /* Ensure it stays on top */
+        }
+    </style>
+</head>
+<body>
+    <div class="joystick">
+        <div class="stick" id="stick"></div>
+        <div class="center-dot"></div> <!-- Center dot added here -->
+    </div>
+    
+    <script>
+        const socket = io(); // Connect to the socket server
+        const stick = document.getElementById('stick');
+        const joystick = document.querySelector('.joystick');
+
+        joystick.addEventListener('mousedown', startMove);
+        joystick.addEventListener('touchstart', startMove);
+
+        function startMove(e) {
+            e.preventDefault();
+            document.addEventListener('mousemove', moveStick);
+            document.addEventListener('mouseup', stopMove);
+            document.addEventListener('touchmove', moveStick);
+            document.addEventListener('touchend', stopMove);
+            moveStick(e); // Start moving immediately
+        }
+
+        function moveStick(e) {
+            const rect = joystick.getBoundingClientRect();
+            const x = e.clientX - rect.left - rect.width / 2;
+            const y = e.clientY - rect.top - rect.height / 2;
+
+            // Calculate the maximum distance to allow the stick to touch the edge
+            const maxDistance = rect.width / 2 - 20; // Adjust for half the stick's width (20px for 40px stick)
+
+            const distance = Math.min(Math.sqrt(x * x + y * y), maxDistance);
+            const angle = Math.atan2(y, x);
+
+            stick.style.transform = `translate(${distance * Math.cos(angle)}px, ${distance * Math.sin(angle)}px)`;
+
+            const angleDegrees = angle * (180 / Math.PI);
+            socket.emit('joystick_movement', {
+                angle: angleDegrees < 0 ? angleDegrees + 360 : angleDegrees, // Normalize to 0-360
+                distance: distance
+            });
+        }
+
+        function stopMove() {
+            document.removeEventListener('mousemove', moveStick);
+            document.removeEventListener('mouseup', stopMove);
+            document.removeEventListener('touchmove', moveStick);
+            document.removeEventListener('touchend', stopMove);
+           // stick.style.transform = 'translate(-50%, -50%)'; // Reset stick position to center
+        }
+    </script>
+</body>
+</html>

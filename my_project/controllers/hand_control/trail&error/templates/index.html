@@ -1,0 +1,159 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Hand Joystick Control</title>
+    <script src="https://cdn.socket.io/4.0.0/socket.io.min.js"></script>
+    <style>
+        .joystick-container {
+            display: flex;
+            justify-content: space-around;
+            padding: 0px;
+        }
+        .joystick-column {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 15px;
+        }
+        .joystick-zone {
+            position: relative;
+            width: 100px;
+            height: 100px;
+            background: #ccc;
+            border-radius: 50%;
+          //  overflow: hidden;
+        }
+        .stick {
+            position: absolute;
+            top: 35px; /* Change this value to adjust the vertical starting position */
+            left: 35px;
+            width: 30px;
+            height: 30px;
+            background: red;
+            border-radius: 50%;
+            cursor: pointer;
+            transition: transform 0.0001s;
+           // transform: translate(50px, 50px);
+        }
+        h2 {
+            font-size: 1.2em;
+            text-align: center;
+        }
+        .center-dot {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            width: 5px;
+            height: 5px;
+            background: black;
+            border-radius: 50%;
+            transform: translate(-50%, -50%);
+            z-index: 1;
+        }
+    </style>
+</head>
+<body>
+    <div class="joystick-container">
+        <div class="joystick-column">
+            <h2>Left Arm Joystick</h2>
+            <div id="leftArmJoystickZone" class="joystick-zone">
+                <div class="stick"></div>
+                <div class="center-dot"></div>
+            </div>
+            <h2>Left Lower Arm Joystick</h2>
+            <div id="leftLowerArmJoystickZone" class="joystick-zone">
+                <div class="stick"></div>
+                <div class="center-dot"></div>
+            </div>
+            <h2>Left Hand Joystick</h2>
+            <div id="leftHandJoystickZone" class="joystick-zone">
+                <div class="stick"></div>
+                <div class="center-dot"></div>
+            </div>
+        </div>
+        <div class="joystick-column">
+            <h2>Right Arm Joystick</h2>
+            <div id="rightArmJoystickZone" class="joystick-zone">
+                <div class="stick"></div>
+                <div class="center-dot"></div>
+            </div>
+            <h2>Right Lower Arm Joystick</h2>
+            <div id="rightLowerArmJoystickZone" class="joystick-zone">
+                <div class="stick"></div>
+                <div class="center-dot"></div>
+            </div>
+            <h2>Right Hand Joystick</h2>
+            <div id="rightHandJoystickZone" class="joystick-zone">
+                <div class="stick"></div>
+                <div class="center-dot"></div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        const socket = io();
+
+        function handleJoystickMove(e, joystickId) {
+            e.preventDefault();  // Prevent default behavior like scrolling on touch devices
+            const joystick = e.currentTarget;
+            const stick = joystick.querySelector('.stick');
+            const rect = joystick.getBoundingClientRect();
+            const x = (e.clientX || e.touches[0].clientX) - rect.left - rect.width / 2;
+            const y = (e.clientY || e.touches[0].clientY) - rect.top - rect.height / 2;
+            const distance = Math.min(Math.sqrt(x * x + y * y), rect.width / 2 - 15);
+            const angle = Math.atan2(y, x);
+
+            stick.style.transform = `translate(${distance * Math.cos(angle)}px, ${distance * Math.sin(angle)}px)`;
+
+            const angleDegrees = angle * (180 / Math.PI);
+            socket.emit('joystick_movement', {
+                id: joystickId,
+                angle: angleDegrees < 0 ? angleDegrees + 360 : angleDegrees,
+                distance: distance
+            });
+        }
+
+        function stopJoystickMove(e, joystickId) {
+            const joystick = e.currentTarget;
+            const stick = joystick.querySelector('.stick');
+            stick.style.transform = 'translate(0, 0)';
+            socket.emit('joystick_movement', {
+                id: joystickId,
+                angle: 0,
+                distance: 0
+            });
+
+            joystick.removeEventListener('mousemove', handleJoystickMove);
+            joystick.removeEventListener('touchmove', handleJoystickMove);
+        }
+
+        const joystickZones = [
+            { id: 'leftArmJoystickZone', joystickId: 'leftArmAngle' },
+            { id: 'leftLowerArmJoystickZone', joystickId: 'leftLowerArmAngle' },
+            { id: 'leftHandJoystickZone', joystickId: 'leftHandAngle' },
+            { id: 'rightArmJoystickZone', joystickId: 'rightArmAngle' },
+            { id: 'rightLowerArmJoystickZone', joystickId: 'rightLowerArmAngle' },
+            { id: 'rightHandJoystickZone', joystickId: 'rightHandAngle' }
+        ];
+
+        joystickZones.forEach(({ id, joystickId }) => {
+            const joystickZone = document.getElementById(id);
+
+            joystickZone.addEventListener('mousedown', (e) => {
+                handleJoystickMove(e, joystickId);
+                joystickZone.addEventListener('mousemove', (event) => handleJoystickMove(event, joystickId));
+            });
+
+            joystickZone.addEventListener('mouseup', (e) => stopJoystickMove(e, joystickId));
+
+            joystickZone.addEventListener('touchstart', (e) => {
+                handleJoystickMove(e, joystickId);
+                joystickZone.addEventListener('touchmove', (event) => handleJoystickMove(event, joystickId));
+            });
+
+            joystickZone.addEventListener('touchend', (e) => stopJoystickMove(e, joystickId));
+        });
+    </script>
+</body>
+</html>

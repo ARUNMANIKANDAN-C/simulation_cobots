@@ -1,0 +1,86 @@
+#VRML_SIM R2023b utf8
+
+EXTERNPROTO "https://raw.githubusercontent.com/cyberbotics/webots/R2023b/projects/objects/factory/conveyors/protos/ConveyorBelt.proto"
+EXTERNPROTO "https://raw.githubusercontent.com/cyberbotics/webots/R2023b/projects/objects/factory/containers/protos/PlasticCrate.proto"
+EXTERNPROTO "https://raw.githubusercontent.com/cyberbotics/webots/R2023b/projects/objects/backgrounds/protos/TexturedBackground.proto"
+EXTERNPROTO "https://raw.githubusercontent.com/cyberbotics/webots/R2023b/projects/objects/backgrounds/protos/TexturedBackgroundLight.proto"
+EXTERNPROTO "https://raw.githubusercontent.com/cyberbotics/webots/R2023b/projects/objects/floors/protos/RectangleArena.proto"
+EXTERNPROTO "https://raw.githubusercontent.com/cyberbotics/webots/R2023b/projects/robots/universal_robots/protos/UR5e.proto"
+EXTERNPROTO "https://raw.githubusercontent.com/cyberbotics/webots/R2023b/projects/objects/solids/protos/SolidBox.proto"
+
+WorldInfo {
+}
+Viewpoint {
+  fieldOfView 0.1
+  orientation 0.07979950259210997 -0.36102583399000465 -0.9291352897064415 5.816044974800807
+  position -39.06939784269718 -20.277247245479167 8.819671367347837
+}
+TexturedBackground {
+  texture "empty_office"
+}
+TexturedBackgroundLight {
+  texture "dusk"
+}
+RectangleArena {
+  contactMaterial "wood"
+  floorSize 6 6
+  wallThickness 0.1
+  wallHeight 0.6
+}
+TexturedBackgroundLight {
+}
+Robot {
+  translation 1.32 -1.65 1.09
+  children [
+    Solid {
+      translation 0.82 0.09 -0.48
+      children [
+        Shape {
+          geometry Box {
+            size 0.1 0.1 0.1
+          }
+        }
+      ]
+    }
+    DistanceSensor {
+    }
+  ]
+}
+PlasticCrate {
+  translation 1.85 -0.33 0
+}
+ConveyorBelt {
+  hidden translation_1 -1.2205913381376917e-05 -3.018395755560732e-08 0.3748626308988142
+  hidden rotation_1 -0.026524617525799755 0.9987977175008799 0.04122577082532817 5.4813409901425e-05
+  translation 0 -2.15 0
+  rotation 0 0 -1 0
+  size 6 0.6 0.5
+}
+UR5e {
+  hidden position_0_0 7.028927092853294e-05
+  hidden rotation_1 0 0 1 7.028926858299526e-05
+  hidden position_1_0 5.1466055405324844e-05
+  hidden rotation_2 0 1 0 1.5708474660553915
+  hidden position_2_0 9.318856161245274e-06
+  hidden rotation_3 0 1 0 9.318838812208159e-06
+  hidden position_3_0 -6.540373410691558e-06
+  hidden rotation_4 0 1 0 1.5707894596265772
+  hidden position_4_0 -4.1101292302426235e-07
+  hidden rotation_5 0 0 -1 4.107966647175028e-07
+  hidden position_5_0 -4.1208932634139427e-07
+  hidden rotation_6 0 -1 0 4.1187628987685676e-07
+  translation 1.88 -1.22 0.58
+  controllerArgs [
+    ""
+  ]
+}
+SolidBox {
+  translation 1.88 -1.3 0.28
+  rotation 1 0 0 0
+  size 1 1 0.55
+  appearance PBRAppearance {
+    baseColor 0 0 0
+    roughness 0.5
+    metalness 0
+  }
+}

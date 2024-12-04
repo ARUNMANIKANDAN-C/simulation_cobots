@@ -1,4 +1,4 @@
-import math  # Import the math module to use mathematical functions
+import math  # Import the math module to use mathematical functions 
 from controller import Robot
 
 # Create the Robot instance
@@ -13,12 +13,30 @@ joint_names = ["shoulder_pan_joint", "shoulder_lift_joint", "elbow_joint", "wris
 
 # Set the target joint velocity for faster movement (adjust as necessary)
 joint_velocity = 2.0  # Increase the speed (radians per second)
+num_devices = robot.getNumberOfDevices()
 
+"""
+# Print the names of all devices
+print("Devices in the robot:")
+for i in range(num_devices):
+    device = robot.getDeviceByIndex(i)
+    print(f"Name: {device.getName()}, Type: {type(device).__name__}")
+"""
 for joint_name in joint_names:
     joint_motor = robot.getDevice(joint_name)
     joint_motor.setPosition(float('inf'))  # Set control mode to velocity control
     joint_motor.setVelocity(joint_velocity)  # Set a higher velocity for faster movement
     joints.append(joint_motor)
+
+# Get the gripper motor (update the name if it differs in your model)
+gripper1 = robot.getDevice("Gripper::left finger joint")
+gripper = robot.getDevice("Gripper::right finger joint")
+if gripper is not None:
+    gripper.setPosition(float('inf'))  # Set control mode to velocity control
+    gripper.setVelocity(1.0)  # Set gripper speed (adjust as necessary)
+else:
+    print("Gripper device not found!")
+# Set gripper speed (adjust as necessary)
 
 # Main control loop: Perform simulation steps until Webots is stopping the controller
 while robot.step(timestep) != -1:
@@ -40,5 +58,11 @@ while robot.step(timestep) != -1:
     # Set the target position for each joint
     for i in range(len(joints)):
         joints[i].setPosition(positions[i])
+
+    # Control the gripper (open or close based on some condition)
+    if current_time % 2 < 1:  # Example: toggle gripper every second
+        gripper.setPosition(0.0)  # Close the gripper
+    else:
+        gripper.setPosition(0.1)  # Open the gripper
 
 # Cleanup: Webots will automatically clean up when the simulation is stopped

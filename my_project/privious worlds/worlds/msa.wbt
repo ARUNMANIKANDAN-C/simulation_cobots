@@ -1,0 +1,220 @@
+#VRML_SIM R2023b utf8
+
+EXTERNPROTO "https://raw.githubusercontent.com/cyberbotics/webots/R2023b/projects/objects/backgrounds/protos/TexturedBackground.proto"
+EXTERNPROTO "https://raw.githubusercontent.com/cyberbotics/webots/R2023b/projects/objects/backgrounds/protos/TexturedBackgroundLight.proto"
+EXTERNPROTO "https://raw.githubusercontent.com/cyberbotics/webots/R2023b/projects/objects/floors/protos/RectangleArena.proto"
+EXTERNPROTO "https://raw.githubusercontent.com/cyberbotics/webots/R2023b/projects/robots/universal_robots/protos/UR5e.proto"
+EXTERNPROTO "https://raw.githubusercontent.com/cyberbotics/webots/R2023b/projects/appearances/protos/BrushedAluminium.proto"
+EXTERNPROTO "https://raw.githubusercontent.com/cyberbotics/webots/R2023b/projects/appearances/protos/Parquetry.proto"
+EXTERNPROTO "https://raw.githubusercontent.com/cyberbotics/webots/R2023b/projects/objects/tables/protos/Table.proto"
+EXTERNPROTO "https://raw.githubusercontent.com/cyberbotics/webots/R2023b/projects/devices/robotiq/protos/Robotiq2f140Gripper.proto"
+EXTERNPROTO "../protos/Pedestrian.proto"
+
+WorldInfo {
+}
+Viewpoint {
+  orientation -0.1303295288915118 -0.0910799285002631 0.9872784108463548 4.34949490265595
+  position 1.1715998485188353 11.864984053562283 5.158610242956337
+  follow "robot"
+}
+TexturedBackground {
+  texture "factory"
+}
+TexturedBackgroundLight {
+}
+RectangleArena {
+  translation 0 0 0.09
+  contactMaterial "wood"
+  floorSize 15 15
+  floorTileSize 1 1
+  floorAppearance Parquetry {
+    type "light strip"
+  }
+  wallThickness 0.06
+  wallHeight 0.4
+  wallAppearance BrushedAluminium {
+    colorOverride 0 0 0
+    IBLStrength 2
+  }
+}
+Robot {
+  children [
+    Pedestrian {
+      hidden translation_2 0.09308541798708649 4.996003610813204e-16 0.030083157239683855
+      hidden rotation_2 0 -1 0 0.52
+      hidden translation_3 -0.00757155955203221 3.0531133177191805e-16 0.002996753976214725
+      hidden rotation_3 0 0.9999999999999999 0 6.200481727132856
+      hidden translation_4 0.04404181895178452 3.2751579226442118e-15 -0.006850731989186565
+      hidden rotation_4 0 1 0 0.11999999999999919
+      hidden translation_5 -0.17950445985356542 -4.718447854656915e-15 0.10358103165536656
+      hidden rotation_5 0 1 0 1.1518963536826834
+      hidden translation_6 -0.13725468833051774 -1.8318679906315083e-15 -0.07445890616031839
+      hidden rotation_6 0 1 0 4.452622840162748
+      hidden translation_7 -0.3707462386456356 -4.440892098500626e-16 -0.21062790948441454
+      hidden rotation_7 0 1 0 5.061262402139365
+      hidden translation_8 -0.16270518779681772 -1.942890293094024e-16 -0.023335154224921273
+      hidden rotation_8 0 -1 0 0.5499999999999998
+      hidden translation_9 0.7240408090782463 -8.881784197001252e-16 -0.6603884632954693
+      hidden rotation_9 0 1 0 1.3999999999999997
+      hidden translation_10 0.08125810917152729 6.106226635438361e-16 -0.009287826659984288
+      hidden rotation_10 0 1 0 0.06999999999999902
+      hidden translation_11 -0.16546565493572749 -9.159339953157541e-16 -0.024576018779141673
+      hidden rotation_11 0 -1 0 0.5600000000000004
+      hidden translation_12 0.5559526559530894 -8.049116928532385e-16 -0.2750675459597343
+      hidden rotation_12 0 1 0 0.8400000000000001
+      hidden translation_14 -0.06607937909543589 0 0.007768129402654422
+      hidden rotation_14 0 1 0 0.17999999999999955
+      translation -4.900000000000032 3.999999999999999 1.25
+      rotation 0 0 1 -3.1411853071795863
+      controller "Joystick"
+      controllerArgs [
+        ""
+      ]
+      rightLegAngle -0.56
+      rightLowerLegAngle 0.84
+      leftLegAngle -0.55
+      leftLowerLegAngle 1.4
+      leftFootAngle 0.07
+      rightArmAngle 1.1518963536826834
+      rightLowerArmAngle 4.452622840162748
+      rightHandAngle 5.061262402139365
+      leftArmAngle -0.52
+      leftLowerArmAngle 6.200481727132856
+      leftHandAngle 0.12
+      headAngle 0.18
+    }
+    UR5e {
+      hidden position_0_0 -1.73466243177039
+      hidden rotation_1 0 0 -0.9999999999999999 1.73466243177039
+      hidden position_1_0 -0.4542124748562232
+      hidden linearVelocity_1 -3.797997855809598e-05 -0.00012089705846965412 3.926452203455173e-05
+      hidden angularVelocity_1 -3.32091471792618e-05 -1.0727866769434522e-05 0.0012906399949020478
+      hidden rotation_2 0 1 0 1.1165835251437626
+      hidden position_2_0 1.3796795297829239
+      hidden linearVelocity_2 0.0001640326325476475 -0.00011430905051553909 -0.0005936908641068693
+      hidden angularVelocity_2 0.002788536003291466 -0.0013971124270365845 0.0012873377661943007
+      hidden rotation_3 0 1 0 1.3796795297829236
+      hidden position_3_0 0.8636464276549063
+      hidden linearVelocity_3 0.0059669053074858265 0.011814755083726841 -0.0110212060508414
+      hidden angularVelocity_3 0.10062059224263564 -0.044874157278878224 0.0013982509470344886
+      hidden rotation_4 0 1 0 2.4344424276548935
+      hidden position_4_0 -0.24805841438024234
+      hidden linearVelocity_4 0.0150277062708819 0.03181392196428259 -0.026760148097975202
+      hidden angularVelocity_4 -0.6048855701139348 0.2751914985772264 0.0013888013769374325
+      hidden rotation_5 0 0 -1 0.24805841438024226
+      hidden position_5_0 -0.5512302091015371
+      hidden linearVelocity_5 0.020676997188808725 0.044936920199918254 -0.09152155688313052
+      hidden angularVelocity_5 -0.9944135182248521 -0.5843680513823551 -0.21976038499900316
+      hidden translation_6 4.68708834870737e-05 0.0001894565932680772 0.09985697456605755
+      hidden rotation_6 0.00010282007208911046 -0.9999999892023114 -0.00010499242822049319 0.551216059253483
+      hidden linearVelocity_6 0.0064012545714117 0.04424350089113637 -0.0033184154978144
+      hidden angularVelocity_6 -0.4141436009316387 -0.8897591305093496 -0.070531921110072
+      hidden position_7_0 -0.013405019022217357
+      hidden position_7_1 0.016648202715635687
+      hidden position_7_2 0.7009487070726639
+      hidden position_7_3 -0.7168737762145313
+      hidden rotation_8 1 0 0 2.3092010190222148
+      hidden linearVelocity_8 0.04125989314603282 0.03228102370921434 -0.05343192443772975
+      hidden angularVelocity_8 -0.414365625797877 -0.8985194113968903 -0.09551102921269258
+      hidden position_9_0 -0.10880830522842766
+      hidden rotation_10 -1 0 0 0.8338083052284386
+      hidden linearVelocity_10 0.07053296636503358 0.015484708738082179 -0.04396808232560627
+      hidden angularVelocity_10 -0.4122013058607144 -0.9151921101054415 -0.1334674436096739
+      hidden rotation_12 1 0 0 2.312444202715632
+      hidden position_12_0 -0.11204925870496282
+      hidden linearVelocity_12 0.04180979377471815 0.029016560623182586 -0.029403075948919687
+      hidden angularVelocity_12 -0.41480495538249984 -0.8944652320974886 -0.08571092216829715
+      hidden rotation_13 -5.946882279506641e-08 0.7155587742463292 0.6985525324548524 3.141592978941707
+      hidden linearVelocity_13 0.01947078917362104 0.029841550512287394 0.05892931636428861
+      hidden angularVelocity_13 -0.4140603885373878 -0.885009358991443 -0.0574796489396045
+      hidden position_14_0 0.5022292917521808
+      hidden translation_15 0 0.08176462761466481 -0.02821753023205397
+      hidden rotation_15 -1 0 0 0.22277070824780706
+      hidden linearVelocity_15 0.0707192673499435 0.015013489299914827 0.02905618328689422
+      hidden angularVelocity_15 -0.4009688742763393 -1.0355574827630736 -0.42617989296109876
+      hidden rotation_17 -6.076223690120684e-08 -0.7099739005397057 -0.7042279890436282 3.1415929779843577
+      hidden position_17_0 0.5181727999887507
+      hidden linearVelocity_17 0.03276148882906116 0.029102124740195627 0.0312809815538117
+      hidden angularVelocity_17 -0.41275486265998307 -0.8990949184614003 -0.0919234485288235
+      translation 0 0 1
+      rotation 2.0399899997508534e-06 -1.549519999810755e-05 0.9999999998778686 -0.261795307179586
+      controller "ur5e_controller"
+      controllerArgs [
+        ""
+      ]
+      toolSlot [
+        Robotiq2f140Gripper {
+          name "Gripper"
+        }
+        Camera {
+        }
+        InertialUnit {
+        }
+      ]
+    }
+    Table {
+      translation 0.11 0 0
+      rotation 0 0 1 1.5708
+      size 2 2 1
+    }
+    Robot {
+      translation -1.5 1.5 2.5
+      rotation -0.8955334711889904 0.3980148760839957 0.19900743804199786 3
+      children [
+        Shape {
+          appearance Appearance {
+          }
+          geometry Sphere {
+            radius 0.1
+          }
+        }
+        Camera {
+        }
+      ]
+      name "solid(1)"
+      controller "camera"
+    }
+    Robot {
+      translation -1.38968 -1.58084 2.4701
+      rotation 0.7715167498104595 -0.1543033499620919 -0.6172133998483676 -1.3090049989208392
+      children [
+        Shape {
+          appearance Appearance {
+          }
+          geometry Sphere {
+            radius 0.1
+          }
+        }
+        Camera {
+        }
+      ]
+      controller "camera"
+      controllerArgs [
+        ""
+      ]
+    }
+    Robot {
+      translation -0.5 0.07 3.5
+      rotation 0 1 0 1.5708
+      children [
+        Shape {
+          appearance Appearance {
+          }
+          geometry Sphere {
+            radius 0.1
+          }
+        }
+        Camera {
+          recognitionColors [
+            0 0 0
+          ]
+          width 512
+          height 512
+        }
+      ]
+      name "solid"
+      controller "camera"
+    }
+  ]
+  name "robot(1)"
+}

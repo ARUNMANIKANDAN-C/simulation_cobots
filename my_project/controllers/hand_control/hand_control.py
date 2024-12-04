@@ -1,19 +1,14 @@
 from controller import Supervisor
-from flask import Flask, jsonify, request, render_template
-import threading
+import requests
+import time
+
+headers = {'Accept': 'application/json'}
 
 class Pedestrian(Supervisor):
-    """Control a Pedestrian PROTO with Flask for hand control."""
-    
+    """Control a Pedestrian PROTO with direct hand control."""
+
     def __init__(self):
         super(Pedestrian, self).__init__()
-        self.BODY_PARTS_NUMBER = 13
-        self.WALK_SEQUENCES_NUMBER = 8
-        self.ROOT_HEIGHT = 1.27
-        self.CYCLE_TO_DISTANCE_RATIO = 0.05
-        self.speed = 1
-        self.current_height_offset = 0
-        self.joints_position_field = []
         self.joint_names = [
             "leftArmAngle", "leftLowerArmAngle", "leftHandAngle",
             "rightArmAngle", "rightLowerArmAngle", "rightHandAngle"
@@ -26,40 +21,44 @@ class Pedestrian(Supervisor):
             'rightLowerArmAngle': 0,
             'rightHandAngle': 0
         }
-        
-        # Start the Flask server in a separate thread
-        threading.Thread(target=self.start_flask_server, daemon=True).start()
+
+        # Set the time step (in seconds)
+        self.time_step = 1.0 / 60.0  # 60 times per second
 
     def apply_hand_angles(self):
         """Apply the current hand angles to the pedestrian."""
-        # Assign the angles fetched from Flask
-        self.angles[0][0] = self.hand_angles['leftArmAngle']  
-        self.angles[1][0] = self.hand_angles['leftLowerArmAngle']  
-        self.angles[2][0] = self.hand_angles['leftHandAngle']  
-        self.angles[3][0] = self.hand_angles['rightArmAngle']  
-        self.angles[4][0] = self.hand_angles['rightLowerArmAngle']  
-        self.angles[5][0] = self.hand_angles['rightHandAngle']  
+        try:
+            r = requests.get('http://127.0.0.1:5000/get_angles', headers=headers)
+            r.raise_for_status()  # Raise an error for bad responses
 
-    def start_flask_server(self):
-        """Start the Flask app to control hand angles via joystick."""
-        app = Flask(__name__, template_folder='./templates')
+            # Update hand angles
+            self.hand_angles = r.json()
+            #print(f"Response: {self.hand_angles}")
 
-        @app.route('/')
-        def index():
-            return render_template('joystick.html')  # Serve HTML for the joystick
+            # Update angles based on received data
+            for joint_name in self.joint_names:
+                joint_node = self.getFromDef(joint_name)  # Get the joint node
+                if joint_node is not None:
+                    rotation_vector = self.get_joint_rotation(joint_name)
+                    joint_node.getField('rotation').setSFRotation(rotation_vector)
 
-        @app.route('/update_angles', methods=['POST'])
-        def update_angles():
-            data = request.get_json()
-            for key in self.hand_angles:
-                if key in data:
-                    self.hand_angles[key] = data[key]
+        except requests.RequestException as e:
+            pass
+            #print(f"Failed to retrieve data: {e}")
+
+    def get_joint_rotation(self, joint_name):
+        """Return the rotation vector for a given joint based on its name."""
+        # Convert the angle in degrees to radians
+        angle = self.hand_angles[joint_name] * (3.14159 / 180.0)
+        # Rotation around the Y-axis as an example
+        return (0, 1, 0, angle)
+
+    def run(self):
+        """Run the main control loop."""
+        while self.step(int(self.time_step * 1000)) != -1:  # Webots expects time in milliseconds
             self.apply_hand_angles()
-            return jsonify(self.hand_angles)
+            time.sleep(self.time_step)  # Sleep to maintain 60 Hz rate
 
-        @app.route('/get_angles', methods=['GET'])
-        def get_angles():
-            return jsonify(self.hand_angles)
-
-        app.run(host='0.0.0.0', port=5000)
-
+# To run the simulation, create an instance of Pedestrian and call run()
+pedestrian = Pedestrian()
+pedestrian.run()

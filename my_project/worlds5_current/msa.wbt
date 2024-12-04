@@ -1,0 +1,239 @@
+#VRML_SIM R2023b utf8
+
+EXTERNPROTO "https://raw.githubusercontent.com/cyberbotics/webots/R2023b/projects/objects/backgrounds/protos/TexturedBackground.proto"
+EXTERNPROTO "https://raw.githubusercontent.com/cyberbotics/webots/R2023b/projects/objects/backgrounds/protos/TexturedBackgroundLight.proto"
+EXTERNPROTO "https://raw.githubusercontent.com/cyberbotics/webots/R2023b/projects/objects/floors/protos/RectangleArena.proto"
+EXTERNPROTO "https://raw.githubusercontent.com/cyberbotics/webots/R2023b/projects/robots/universal_robots/protos/UR5e.proto"
+EXTERNPROTO "https://raw.githubusercontent.com/cyberbotics/webots/R2023b/projects/appearances/protos/BrushedAluminium.proto"
+EXTERNPROTO "https://raw.githubusercontent.com/cyberbotics/webots/R2023b/projects/appearances/protos/Parquetry.proto"
+EXTERNPROTO "https://raw.githubusercontent.com/cyberbotics/webots/R2023b/projects/objects/tables/protos/Table.proto"
+EXTERNPROTO "https://raw.githubusercontent.com/cyberbotics/webots/R2023b/projects/devices/robotiq/protos/Robotiq2f140Gripper.proto"
+EXTERNPROTO "https://raw.githubusercontent.com/cyberbotics/webots/R2023b/projects/objects/factory/containers/protos/PlasticCrate.proto"
+EXTERNPROTO "https://raw.githubusercontent.com/cyberbotics/webots/R2023b/projects/objects/solids/protos/SolidBox.proto"
+
+WorldInfo {
+}
+Viewpoint {
+  orientation -0.3473903204024429 0.22987416872068134 0.909108261894954 2.0584425777678974
+  position 2.093112957512683 -2.6455388763410737 4.626573187374419
+  follow "robot"
+}
+TexturedBackground {
+  texture "factory"
+}
+TexturedBackgroundLight {
+}
+RectangleArena {
+  contactMaterial "wood"
+  floorSize 15 15
+  floorTileSize 1 1
+  floorAppearance Parquetry {
+    type "light strip"
+  }
+  wallThickness 0.06
+  wallHeight 0.4
+  wallAppearance BrushedAluminium {
+    colorOverride 0 0 0
+    IBLStrength 2
+  }
+}
+Robot {
+  children [
+    UR5e {
+      hidden position_0_0 -1.8327717433906936
+      hidden rotation_1 0 0 -1 1.8327717433906936
+      hidden position_1_0 -0.28391392542594424
+      hidden linearVelocity_1 -2.6823231302915873e-06 1.5744806902650017e-05 7.676894733529419e-06
+      hidden angularVelocity_1 -5.18000196933968e-06 -6.517066807435476e-07 -0.0005920609746129619
+      hidden rotation_2 0 0.9999999999999999 0 1.286882074574023
+      hidden position_2_0 0.9916275036027675
+      hidden linearVelocity_2 -9.90592971256046e-05 0.00011340766313118021 0.00048091455180168587
+      hidden angularVelocity_2 -0.001976488697152742 0.0011362435493460596 -0.0005972686084593639
+      hidden rotation_3 0 1 0 0.9916275036027676
+      hidden position_3_0 1.1025171951154897
+      hidden linearVelocity_3 1.1660559819034394e-05 0.0007045185414292538 0.000537366991744979
+      hidden angularVelocity_3 0.0031541211171742874 -0.0018308654778524044 -0.0005988308908131424
+      hidden rotation_4 0 1 0 2.6733131951154725
+      hidden position_4_0 -0.8942544505258121
+      hidden linearVelocity_4 8.881922735980881e-05 0.0011802187649566768 -0.00012630029078813772
+      hidden angularVelocity_4 0.012178595598131281 -0.007048371655290549 -0.0005973858303791583
+      hidden rotation_5 0 0 -1 0.8942544505258121
+      hidden position_5_0 -0.4444888287730772
+      hidden linearVelocity_5 -6.530359251473852e-05 0.0008970590439754987 0.0012280583643205613
+      hidden angularVelocity_5 0.021866213896724412 0.009723269957158796 0.004128439016035249
+      hidden translation_6 3.136636206815143e-05 0.00018945659326807725 0.09985279502113076
+      hidden rotation_6 0.00011985069126687505 -0.9999999835404982 -0.0001362160595010169 0.4444746803663922
+      hidden linearVelocity_6 0.0008102337447182701 -0.0004831473571451801 -0.00014478213418472408
+      hidden angularVelocity_6 0.015027712122830147 0.016927298739024276 -0.0074036923284933305
+      hidden position_8_0 0.4657555633832714
+      hidden position_8_1 -0.40368468099488175
+      hidden position_8_2 0.3001100657487647
+      hidden position_8_3 -0.39087775375820527
+      hidden rotation_9 1 0 0 1.8300404366167204
+      hidden linearVelocity_9 -8.151344167038141e-05 -5.02565878623266e-05 -0.0004076316324879636
+      hidden angularVelocity_9 0.004853621265430815 0.029955684387097378 0.006759860758343966
+      hidden position_10_0 2.1490117669669115
+      hidden rotation_11 1 0 0 1.424011766967181
+      hidden linearVelocity_11 -0.0001323542935215531 0.0008997549231002276 -0.0008734602960595781
+      hidden angularVelocity_11 0.022088254186290717 0.007895782434220509 -0.017229786445153692
+      hidden rotation_13 1 0 0 1.8921113190051104
+      hidden position_13_0 1.2812550233679403
+      hidden linearVelocity_13 0.00026229808703114705 -0.00040704084086755625 -0.0009142736556771057
+      hidden angularVelocity_13 0.004527272856652324 0.030372894597733444 0.007217671212439753
+      hidden rotation_14 -2.589287236073344e-08 0.8403035976175398 0.5421160981109296 3.141592996107337
+      hidden linearVelocity_14 0.0017476312355606315 -0.0019147261168773924 -0.0013874076059356213
+      hidden angularVelocity_14 0.015484852207204032 0.01634316607316751 -0.008039375710072136
+      hidden position_15_0 -0.0811936060076491
+      hidden translation_16 0 0.0817533779114947 -0.028219934112191945
+      hidden rotation_16 -0.9999999999999999 0 0 0.8061936060076197
+      hidden linearVelocity_16 0.001872058992373928 -0.0019880194397182607 -0.0012463223350895735
+      hidden angularVelocity_16 0.015175681005484672 0.016738168684851038 -0.007609445242540014
+      hidden rotation_18 -3.363592478400048e-08 -0.8148434948799509 -0.5796810147415788 3.1415929934052276
+      hidden position_18_0 -0.02593026398897347
+      hidden linearVelocity_18 0.001554217933062454 -0.0015601676680530143 -0.000997536373562244
+      hidden angularVelocity_18 0.015489143148996895 0.016337506302897473 -0.008045133598759375
+      translation 0 0 1
+      rotation 0 0 1 -0.261795307179586
+      controller "ur5e_controller"
+      controllerArgs [
+        ""
+      ]
+      toolSlot [
+        DistanceSensor {
+        }
+        Robotiq2f140Gripper {
+          name "Gripper"
+        }
+        InertialUnit {
+        }
+      ]
+    }
+  ]
+  name "robot(1)"
+}
+Robot {
+  rotation 0 0.9695941873479687 0.24471843383985675 1.4850164044968708e-16
+  children [
+    SolidBox {
+      translation 0.3220833255668812 -0.1480894837745117 1.05
+      name "box(9)"
+      size 0.1 0.1 0.1
+      appearance PBRAppearance {
+        baseColor 0.3 0.8 0.3
+        roughness 0.5
+        metalness 0
+      }
+    }
+    SolidBox {
+      translation 0.22750581832401162 0.4934780707286093 1.05
+      name "box(8)"
+      size 0.1 0.1 0.1
+      appearance PBRAppearance {
+        baseColor 0.3 0.8 0.3
+        roughness 0.5
+        metalness 0
+      }
+    }
+    SolidBox {
+      translation 0.21448037719669105 -0.27188262475378877 1.05
+      name "box(7)"
+      size 0.1 0.1 0.1
+      appearance PBRAppearance {
+        baseColor 0.3 0.8 0.3
+        roughness 0.5
+        metalness 0
+      }
+    }
+    SolidBox {
+      translation 0.30260025215041153 0.24651525657026374 1.05
+      name "box(6)"
+      size 0.1 0.1 0.1
+      appearance PBRAppearance {
+        baseColor 0.3 0.8 0.3
+        roughness 0.5
+        metalness 0
+      }
+    }
+    SolidBox {
+      translation 0.28211228062410587 0.007163494249067148 1.05
+      name "box(5)"
+      size 0.1 0.1 0.1
+      appearance PBRAppearance {
+        baseColor 0.8 0.8 0.3
+        roughness 0.5
+        metalness 0
+      }
+    }
+    SolidBox {
+      translation 0.5916497696341321 0.276286464974529 1.05
+      name "box(4)"
+      size 0.1 0.1 0.1
+      appearance PBRAppearance {
+        baseColor 0.8 0.8 0.3
+        roughness 0.5
+        metalness 0
+      }
+    }
+    SolidBox {
+      translation 0.47723653618652395 -0.49022871082104347 1.05
+      name "box(3)"
+      size 0.1 0.1 0.1
+      appearance PBRAppearance {
+        baseColor 0.8 0.8 0.3
+        roughness 0.5
+        metalness 0
+      }
+    }
+    SolidBox {
+      translation 0.4269996502044573 -0.31035509733386146 1.05
+      name "box(2)"
+      size 0.1 0.1 0.1
+      appearance PBRAppearance {
+        baseColor 0.8 0.3 0.8
+        roughness 0.5
+        metalness 0
+      }
+    }
+    SolidBox {
+      translation 0.550802441828705 0.03705422506649103 1.05
+      name "box(1)"
+      size 0.1 0.1 0.1
+      appearance PBRAppearance {
+        baseColor 0.8 0.3 0.8
+        roughness 0.5
+        metalness 0
+      }
+    }
+    SolidBox {
+      translation 0.3668296834963271 0.40303185452320645 1.05
+      name "box(0)"
+      size 0.1 0.1 0.1
+      appearance PBRAppearance {
+        baseColor 0.8 0.3 0.8
+        roughness 0.5
+        metalness 0
+      }
+    }
+    Table {
+      translation 0.7 0 0
+      rotation 0 0 1 1.5708
+      size 2 3 1
+    }
+    PlasticCrate {
+      translation -0.3 0.5 1
+      name "plastic crate(1)"
+      size 0.4 0.4 0.1
+    }
+    PlasticCrate {
+      translation -0.3 -0.5 1
+      size 0.4 0.4 0.1
+      color 0 0.9 0.7
+    }
+  ]
+  name "MY_ROBOT"
+  boundingObject Box {
+    size 0.1 0.1 0.1
+  }
+  controller "object_random_box_TE"
+  supervisor TRUE
+}
